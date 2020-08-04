@@ -9,16 +9,17 @@ public class NewPlayerMove : MonoBehaviour
 	public int bullet_num;
 
 	private float input_x;
-	private float input_y;
 
 	//see to the mouse
 	//values that will be set in the Inspector
 	public Transform AimSprite;
 	public float jumpForce, RotationSpeed;
 	public AimCtrl m_aimCtrl;
-	public GameObject bulletPrefab, front;
-	public bool isGrounded = false;
+	public GameObject bulletPrefab, front, player_sprite;
+	public bool isGrounded = false, isFacingLeft = true;
 
+	public AudioClip damaged, jump;
+	private AudioSource _audioSource;
 
 	private Rigidbody rb;
 	public List<GameObject> bulletAway_gameObject;
@@ -27,11 +28,15 @@ public class NewPlayerMove : MonoBehaviour
 	private Quaternion _lookRotation;
 	private Vector3 _direction;
 	private bool bulletAway;
+
+	public GameMgr m_gameMgr;
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
 		bulletAway = false;
 		healthVal = 100;
+		_audioSource = gameObject.GetComponent<AudioSource>();
 	}
 
 	void Update()
@@ -83,7 +88,14 @@ public class NewPlayerMove : MonoBehaviour
 	void playerMove()
 	{
 		input_x = Input.GetAxisRaw("Horizontal");
-		input_y = Input.GetAxisRaw("Vertical");
+
+		if(input_x > 0)
+		{
+			player_sprite.transform.localScale = new Vector3(1, 1, 1);
+		}else if(input_x < 0)
+		{
+			player_sprite.transform.localScale = new Vector3(-1, 1, 1);
+		}
 
 		transform.position += new Vector3(input_x * speed, 0, 0) * Time.deltaTime;
 	}
@@ -115,8 +127,6 @@ public class NewPlayerMove : MonoBehaviour
 
 		//transform.rotation = new Quaternion(0, 0, _lookRotation.z, _lookRotation.w);
 		//transform.rotation = Quaternion.Slerp(transform.rotation, LookAtRotationOnly_Z, Time.deltaTime * RotationSpeed);
-
-
 	}
 
 	void justJump()
@@ -128,6 +138,9 @@ public class NewPlayerMove : MonoBehaviour
 			Vector3 forc = new Vector3(0, jumpForce, 0f);
 
 			rb.AddForce(forc);
+
+			_audioSource.clip = jump;
+			_audioSource.Play();
 		}
 	}
 
@@ -144,7 +157,7 @@ public class NewPlayerMove : MonoBehaviour
 		//Debug.Log("Velocity: " + direction);
 		GameObject projectile = (GameObject)Instantiate(bulletPrefab, front.transform.position, Quaternion.identity);
 		bulletAway_gameObject.Add(projectile);
-		projectile.GetComponent<BulletCtrl>().SetupBullet(direction, bulletSpeed, gameObject.transform.position);
+		projectile.GetComponent<BulletCtrl>().SetupBullet(direction, bulletSpeed, gameObject.transform);
 		bulletAway = true;
 	}
 
@@ -153,16 +166,15 @@ public class NewPlayerMove : MonoBehaviour
 		if (other.gameObject.tag == "Enemy")
 		{
 			healthVal -= 3;
+			m_gameMgr.updateUI();
+
+			_audioSource.clip = damaged;
+			_audioSource.Play();
+
+			if (healthVal <= 0)
+				m_gameMgr.GameOver();
 		}
 	}
-
-	//private void OnCollisionEnter(Collision other)
-	//{
-	//	if (other.gameObject.tag == "Enemy")
-	//	{
-	//		healthVal -= 3;
-	//	}
-	//}
 
 	private void OnCollisionStay(Collision other)
 	{

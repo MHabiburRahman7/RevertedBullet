@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{ED5F00BD-EC2B-F4C2-7114-111BEFCD114E}</ProjectGuid>
+    <ProjectGuid>{0697E5BC-5E78-664A-3107-DB3F90EFAFFB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,10 +68,15 @@
     <Compile Include="Assets\Script\BulletCtrl.cs" />
     <Compile Include="Assets\Script\CameraMove.cs" />
     <Compile Include="Assets\Script\EnemyAi.cs" />
+    <Compile Include="Assets\Script\EnemyWaypoint.cs" />
     <Compile Include="Assets\Script\GameMgr.cs" />
     <Compile Include="Assets\Script\NewPlayerMove.cs" />
-    <Compile Include="Assets\Script\PlayerMove.cs" />
-    <Compile Include="Assets\crosshair.cs" />
+    <Compile Include="Assets\Script\SceneControl\ExitBtn.cs" />
+    <Compile Include="Assets\Script\SceneControl\GameOver.cs" />
+    <Compile Include="Assets\Script\SceneControl\gotoScene.cs" />
+    <Compile Include="Assets\Script\SceneControl\tutorialBtn.cs" />
+    <Compile Include="Assets\Script\TowerMgr.cs" />
+    <Compile Include="Assets\Script\crosshair.cs" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Program Files/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -601,31 +606,31 @@
       <HintPath>E:/Program Files/2019.4.3f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>E:/Program Files/Habib/UnityProjects/BulletGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>E:/Program Files/Habib/UnityProjects/NewBulletGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
