@@ -46,13 +46,21 @@ public class EnemyAi : MonoBehaviour
 
     void SpriteFace()
     {
-        if(transform.position.x - targetWaypoint.transform.position.x < 0)
+        Vector3 m_localScale = enemy_object.transform.localScale;
+        if (transform.position.x - targetWaypoint.transform.position.x < 0)
         {
-            enemy_object.transform.localScale = new Vector3(1, 1,1);
+            if (m_localScale.x < 0)
+                m_localScale.x = -m_localScale.x;
+
+            enemy_object.transform.localScale = m_localScale;
+            //enemy_object.transform.localScale = new Vector3(m_localScale.x, m_localScale.y, m_localScale.z);
         }
-        else
+        else if(transform.position.x - targetWaypoint.transform.position.x > 0 && m_localScale.x > 0.1f)
         {
-            enemy_object.transform.localScale = new Vector3(-1, 1, 1);
+            if (m_localScale.x > 0)
+                m_localScale.x = -m_localScale.x;
+
+            enemy_object.transform.localScale = m_localScale;
         }
     }
 

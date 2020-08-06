@@ -89,12 +89,22 @@ public class NewPlayerMove : MonoBehaviour
 	{
 		input_x = Input.GetAxisRaw("Horizontal");
 
-		if(input_x > 0)
+		Vector3 m_localScale = player_sprite.transform.localScale;
+		if (input_x > 0)
 		{
-			player_sprite.transform.localScale = new Vector3(1, 1, 1);
-		}else if(input_x < 0)
+			//player_sprite.transform.localScale = new Vector3(m_localScale.x, m_localScale.y, m_localScale.z);
+			if (m_localScale.x < 0)
+				m_localScale.x = -m_localScale.x;
+
+			player_sprite.transform.localScale = m_localScale;
+		}
+		else if(input_x < 0)
 		{
-			player_sprite.transform.localScale = new Vector3(-1, 1, 1);
+			if (m_localScale.x > 0)
+				m_localScale.x = -m_localScale.x;
+
+			player_sprite.transform.localScale = m_localScale;
+			//player_sprite.transform.localScale = new Vector3(m_localScale.x, m_localScale.y, m_localScale.z);
 		}
 
 		transform.position += new Vector3(input_x * speed, 0, 0) * Time.deltaTime;
